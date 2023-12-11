@@ -1,42 +1,72 @@
-<%@page contentType="text/html" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ include file="common/header.jspf"%>
+<%@ include file="common/navigation.jspf"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-    <title>Desafio Java</title>
+<div class="container">
+    <div class="row">
+        <div class="col-md col-md-offset-3 ">
+            <div class="panel panel-primary">
+                <h3>Adicionar Projeto</h3>
+                <div class="panel-body">
+                    <form:form accept-charset="UTF-8" method="post" modelAttribute="project">
+                    <form:hidden path="id" />
+                    <fieldset class="form-group">
+                        <form:label path="name">Nome:</form:label>
+                        <form:input path="name" type="text" class="form-control"
+                                    required="required"/>
+                        <form:errors path="name" cssClass="text-warning" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <form:label path="description">Descrição:</form:label>
+                        <form:textarea path="description" type="text" class="form-control" rows="4" />
+                        <form:errors path="description" cssClass="text-warning" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <form:label path="startDate">Data Inicio:</form:label>
+                        <form:input path="startDate" type="date" class="form-control" />
+                        <form:errors path="startDate" cssClass="text-warning" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <form:label path="dateForecastEnd">Data Termino prevista:</form:label>
+                        <form:input path="dateForecastEnd" type="date" class="form-control" />
+                        <form:errors path="dateForecastEnd" cssClass="text-warning" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <form:label path="endDate">Data Fim:</form:label>
+                        <form:input path="endDate" type="date" class="form-control"/>
+                        <form:errors path="endDate" cssClass="text-warning" />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <form:label path="budget">Orçamento Total (R$):</form:label>
+                        <form:input path="budget" type="text" class="form-control" />
+                        <form:errors path="budget" cssClass="text-warning" />
+                    </fieldset>
 
-    <link href="<c:url value="/static/node_modules/bootstrap/dist/css/bootstrap.min.css"/>"
-          rel="stylesheet">
+                        <fieldset class="form-group">
+                            <form:label path="manager">Gerente Reponsavel:</form:label>
+                            <form:select path="manager" id="manager" class="form-control">
+                                <form:options items="${managers}" itemValue="id" itemLabel="name" />
+                            </form:select>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <form:label path="risk">Nivel de risco:</form:label>
+                            <form:select path="risk" id="risk" class="form-control">
+                                <form:options items="${risks}" itemValue="name" itemLabel="description" />
+                            </form:select>
+                        </fieldset>
 
-</head>
-<body>
-</body>
-
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                    <fieldset class="form-group">
+                        <form:label path="status">Status do Projeto:</form:label>
+                        <form:select path="status" id="status" class="form-control">
+                            <form:options items="${status}" itemValue="name" itemLabel="description" />
+                        </form:select>
+                    </fieldset>
+                </div>
+                <button type="submit" class="btn btn-primary"><i class="bi-arrow-up"></i>Salvar</button>
+                </form:form>
+                </div>
+            </div>
         </div>
     </div>
-</nav>
-
-
-<script src="<c:url value="/static/node_modules/bootstrap/dist/js/bootstrap.min.js"/>"></script>
-</html>
+</div>
+<%@ include file="common/footer.jspf"%>
